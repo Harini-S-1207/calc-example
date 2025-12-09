@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator 💎</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #b084f5, #e8b3ff, #f4c2f7);
+      font-family: "Poppins", sans-serif;
+    }
+
+    .calculator {
+      background: #fff3ff;
+      padding: 25px;
+      border-radius: 25px;
+      box-shadow: 0 4px 30px rgba(128, 0, 128, 0.3);
+      width: 320px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .title {
+      color: #8a2be2;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px #c79aff;
+    }
+
+    #display {
+      width: 100%;
+      height: 60px;
+      border: none;
+      outline: none;
+      background: #f1e1ff;
+      color: #6a1b9a;
+      font-size: 2rem;
+      text-align: right;
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-shadow: inset 2px 2px 5px #d2a6f7, inset -2px -2px 5px #ffffff;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .btn {
+      background: #d9b3ff;
+      color: #4b0082;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(75, 0, 130, 0.2);
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #c292ff;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #d9b3ff, 0 0 20px #b47aff;
+    }
+
+    .light {
+      background: #f3ccff;
+    }
+
+    .light:hover {
+      background: #e0b7ff;
+    }
+
+    .pink {
+      background: #f8b2e9;
+    }
+
+    .pink:hover {
+      background: #f093d3;
+    }
+
+    .equal {
+      background: #a64dff;
+      color: white;
+      box-shadow: 0 4px 10px rgba(166, 77, 255, 0.4);
+    }
+
+    .equal:hover {
+      background: #933eff;
+      box-shadow: 0 0 15px #a64dff, 0 0 25px #c07aff;
+    }
+
+    .zero {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2 class="title">💜 Calculator 🦋</h2>
+    <input type="text" id="display" readonly />
+    <div class="buttons">
+      <button class="btn pink" onclick="clearDisplay()">C</button>
+      <button class="btn pink" onclick="deleteChar()">DEL</button>
+      <button class="btn light" onclick="appendChar('%')">%</button>
+      <button class="btn light" onclick="appendChar('/')">÷</button>
+
+      <button class="btn" onclick="appendChar('7')">7</button>
+      <button class="btn" onclick="appendChar('8')">8</button>
+      <button class="btn" onclick="appendChar('9')">9</button>
+      <button class="btn light" onclick="appendChar('*')">×</button>
+
+      <button class="btn" onclick="appendChar('4')">4</button>
+      <button class="btn" onclick="appendChar('5')">5</button>
+      <button class="btn" onclick="appendChar('6')">6</button>
+      <button class="btn light" onclick="appendChar('-')">−</button>
+
+      <button class="btn" onclick="appendChar('1')">1</button>
+      <button class="btn" onclick="appendChar('2')">2</button>
+      <button class="btn" onclick="appendChar('3')">3</button>
+      <button class="btn light" onclick="appendChar('+')">+</button>
+
+      <button class="btn zero" onclick="appendChar('0')">0</button>
+      <button class="btn" onclick="appendChar('.')">.</button>
+      <button class="btn equal" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+
+    function appendChar(char) {
+      display.value += char;
+    }
+
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    function deleteChar() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    }
+  </script>
+</body>
+</html>
